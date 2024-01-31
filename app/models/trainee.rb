@@ -10,9 +10,9 @@ class Trainee < ActiveRecord::Base
   validates :studentId_number, presence: true 
   
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  #:timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :lockable, :validatable
   include DeviseTokenAuth::Concerns::User
 
 
