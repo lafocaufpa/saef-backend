@@ -7,7 +7,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
       t.boolean :status
       t.references :internship_plan, null: false, foreign_key: true, type: :uuid
 
-      t.timestamps
+      t.timetamps
     end
   end
 end

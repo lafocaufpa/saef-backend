@@ -5,8 +5,6 @@ class InternshipSupervisor < ActiveRecord::Base
 
   validates :name, presence: true 
   validates :cpf, presence: true, length: { is: 11 }#, cpf: { message: 'não é válido' }
-  validates :email, presence: true, uniqueness: { case_sensitive: true }
-  validates :password, presence: true
   validates :function, presence: true
 
   # Include default devise modules. Others available are:
@@ -15,4 +13,11 @@ class InternshipSupervisor < ActiveRecord::Base
          :confirmable, :trackable, :lockable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  before_validation :set_uid 
+
+  private 
+    def set_uid 
+      self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
+    end
 end
