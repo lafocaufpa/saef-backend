@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       # as :internship_supervisor do
       #   # Define routes for InternshipSupervisor within this block.
       # end    
+
+      resources :companies
     end
   end
 end
