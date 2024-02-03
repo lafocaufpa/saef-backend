@@ -8,10 +8,9 @@ class InternshipSupervisor < ActiveRecord::Base
   validates :function, presence: true
 
   # Include default devise modules. Others available are:
-  # :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, 
-         :confirmable, :trackable, :lockable,
-         :recoverable, :rememberable, :validatable
+  #:timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :lockable, :validatable
   include DeviseTokenAuth::Concerns::User
 
   before_validation :set_uid 

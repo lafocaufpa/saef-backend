@@ -7,7 +7,7 @@ class InternshipCoordinator < ActiveRecord::Base
   validates :faculty, presence: true 
 
   # Include default devise modules. Others available are:
-  #:timeoutable,and :omniauthable
+  #:timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :lockable, :validatable
   include DeviseTokenAuth::Concerns::User
