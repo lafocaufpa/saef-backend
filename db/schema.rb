@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_01_040703) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_03_013058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -116,11 +116,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_040703) do
     t.string "cpf", limit: 11, null: false
     t.string "email", null: false
     t.string "function", null: false
-    t.uuid "company_id", null: false
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_internship_supervisors_on_company_id"
     t.index ["confirmation_token"], name: "index_internship_supervisors_on_confirmation_token", unique: true
     t.index ["cpf"], name: "index_internship_supervisors_on_cpf", unique: true
     t.index ["email"], name: "index_internship_supervisors_on_email", unique: true
@@ -183,7 +181,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_040703) do
   add_foreign_key "final_reports", "internship_plans"
   add_foreign_key "internship_plans", "internship_supervisors"
   add_foreign_key "internship_plans", "trainees"
-  add_foreign_key "internship_supervisors", "companies"
   add_foreign_key "tasks", "internship_plans"
   add_foreign_key "trainees", "internship_coordinators"
 end
