@@ -6,7 +6,8 @@ Rails.application.routes.draw do
       }
     
       mount_devise_token_auth_for 'Trainee', at: 'trainee_auth', controllers: {
-        registrations: 'api/v1/trainees/registrations'
+        registrations: 'api/v1/trainees/registrations',
+        sessions: 'api/v1/trainees/sessions'
       }
       # as :trainee do
       #   # Define routes for Trainee within this block.

@@ -3,7 +3,11 @@ class Api::V1::Trainees::RegistrationsController < DeviseTokenAuth::Registration
   before_action :account_update_params, only: %i[update]
 
   def create 
-    super 
+    super do |resource|
+      if resource.persisted?
+        resource.update(is_actived: false) # Blocks access, unlocks only after approval
+      end
+    end
   end
 
   def update 

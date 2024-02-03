@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_01_040703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -166,7 +166,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
     t.integer "class_room", null: false
     t.integer "conclusion_year", null: false
     t.string "studentId_number", null: false
-    t.boolean "is_actived"
+    t.boolean "is_actived", default: false
     t.uuid "internship_coordinator_id", null: false
     t.json "tokens"
     t.datetime "created_at", null: false

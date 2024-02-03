@@ -22,4 +22,8 @@ class Trainee < ActiveRecord::Base
     def set_uid 
       self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
     end
+
+    def unlock?
+      self.is_actived == true
+    end
 end
