@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_one :internship_supervisor
+  belongs_to :internship_supervisor
 
   validates :name, presence: true 
   validates :activity_branch, presence: true 
