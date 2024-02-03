@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_03_013538) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -23,7 +23,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
     t.string "cnpj", limit: 14, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "internship_supervisor_id", null: false
     t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
+    t.index ["internship_supervisor_id"], name: "index_companies_on_internship_supervisor_id"
   end
 
   create_table "final_reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -116,11 +118,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
     t.string "cpf", limit: 11, null: false
     t.string "email", null: false
     t.string "function", null: false
-    t.uuid "company_id", null: false
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_internship_supervisors_on_company_id"
     t.index ["confirmation_token"], name: "index_internship_supervisors_on_confirmation_token", unique: true
     t.index ["cpf"], name: "index_internship_supervisors_on_cpf", unique: true
     t.index ["email"], name: "index_internship_supervisors_on_email", unique: true
@@ -166,7 +166,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
     t.integer "class_room", null: false
     t.integer "conclusion_year", null: false
     t.string "studentId_number", null: false
-    t.boolean "is_actived"
+    t.boolean "is_actived", default: false
     t.uuid "internship_coordinator_id", null: false
     t.json "tokens"
     t.datetime "created_at", null: false
@@ -180,10 +180,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_234651) do
     t.index ["unlock_token"], name: "index_trainees_on_unlock_token", unique: true
   end
 
+  add_foreign_key "companies", "internship_supervisors"
   add_foreign_key "final_reports", "internship_plans"
   add_foreign_key "internship_plans", "internship_supervisors"
   add_foreign_key "internship_plans", "trainees"
-  add_foreign_key "internship_supervisors", "companies"
   add_foreign_key "tasks", "internship_plans"
   add_foreign_key "trainees", "internship_coordinators"
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class InternshipSupervisor < ActiveRecord::Base
-  belongs_to :company
+  has_one :company
   has_one :internship_plan
 
   validates :name, presence: true 
