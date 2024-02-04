@@ -15,9 +15,8 @@ Rails.application.routes.draw do
       }
       
       namespace :internship_supervisors do 
-        resources :companies 
+        resources :companies
       end
-
       
     end
   end
