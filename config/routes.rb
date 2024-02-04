@@ -13,8 +13,12 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'InternshipSupervisor', at: 'internship_supervisor_auth', controllers: {
         registrations: 'api/v1/internship_supervisors/registrations'
       }
+      
+      namespace :internship_supervisors do 
+        resources :companies 
+      end
 
-      resources :companies
+      
     end
   end
 end

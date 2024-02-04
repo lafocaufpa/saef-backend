@@ -1,9 +1,10 @@
-class Api::V1::CompaniesController < ApplicationController
+class Api::V1::InternshipSupervisors::CompaniesController < ApplicationController
+  before_action :authenticate_api_internship_supervisor!
   before_action :set_company, only: %i[show update destroy]
   
   # Method index to list companies
   def index  
-    @companies = Company.order(:name)
+    @companies = current_api_internship_supervisor.company.all
 
     render json: @companies
   end
@@ -13,7 +14,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
   # Method for creating a new company
   def create 
-    @company = Company.new(company_params)
+    @company = current_api_internship_supervisor.company.new(company_params)
     if @company.save
       render json: @company, status: :created  
     else 
@@ -37,7 +38,7 @@ class Api::V1::CompaniesController < ApplicationController
 
   private 
     def set_company
-      @company = Company.find(params[:id])
+      @company = current_api_internship_supervisor.company.find(params[:id])
     end
 
     def company_params 
