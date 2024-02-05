@@ -17,9 +17,14 @@ class Trainee < ActiveRecord::Base
 
 
   before_validation :set_uid 
+  after_create :notify_new_user_mail
 
   private 
     def set_uid 
       self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
+    end
+
+    def notify_new_user_mail
+      InternshipCoordinatorMailer.notify_new_user(self.internship_coordinator).deliver_later
     end
 end

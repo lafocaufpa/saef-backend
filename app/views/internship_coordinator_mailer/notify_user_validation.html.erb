@@ -1,0 +1,9 @@
+<h2>Olá <%=@user.name%>!</h2>
+<p>
+  Gostaria de informá-lhe, que a sua conta 
+  <% if @user.is_actived?%>
+    foi APROVADA!
+  <% else %>
+    infelizmente foi REJEITADA!
+  <% end %>
+</p>
