@@ -18,7 +18,8 @@ Rails.application.routes.draw do
         registrations: 'api/v1/internship_supervisors/registrations'
       }
       namespace :internship_supervisors do 
-        resources :companies
+        resources :companies, except: [:edit, :new]
+        resources :internship_plans, except: [:edit, :new]
       end  
     end
   end
