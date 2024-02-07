@@ -1,7 +1,7 @@
 class InternshipPlan < ApplicationRecord
   belongs_to :trainee
   belongs_to :internship_supervisor
-  has_many :tasks 
+  has_many :tasks, dependent: :destroy
   has_one :final_report 
 
   validates :title, presence: true

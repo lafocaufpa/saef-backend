@@ -1,4 +1,4 @@
-class Api::V1::InternshipSupervisors::InternshipPlansController < ApplicationController
+class Api::V1::InternshipPlansController < ApplicationController
   before_action :authenticate_api_internship_supervisor!
   before_action :set_internship_plan, only: %i[show update destroy]
   def index 

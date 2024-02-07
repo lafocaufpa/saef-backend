@@ -19,8 +19,11 @@ Rails.application.routes.draw do
       }
       namespace :internship_supervisors do 
         resources :companies, except: [:edit, :new]
-        resources :internship_plans, except: [:edit, :new]
       end  
+      
+      resources :internship_plans do 
+        resources :tasks
+      end
     end
   end
 end
