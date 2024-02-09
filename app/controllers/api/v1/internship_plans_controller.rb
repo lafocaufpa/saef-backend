@@ -12,7 +12,7 @@ class Api::V1::InternshipPlansController < ApplicationController
   end
   
   def create 
-    @internship_plan = current_api_internship_supervisor.build_internship_plan(internship_plan_params)
+    @internship_plan = current_api_internship_supervisor.build_internship_plan(internship_plan_params)    
     if @internship_plan.save 
       render json: @internship_plan, status: :created
     else
