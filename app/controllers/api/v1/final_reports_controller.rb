@@ -1,6 +1,7 @@
 class Api::V1::FinalReportsController < ApplicationController
   before_action :authenticate_api_internship_supervisor!, except: [:index, :show]
   before_action :set_internship_plan
+  before_action :valid_create_final_report, only: [:create]
   before_action :set_final_report, only: %i[show update destroy]
 
   def index 
@@ -47,5 +48,11 @@ class Api::V1::FinalReportsController < ApplicationController
 
     def set_internship_plan
       @internship_plan = InternshipPlan.find(params[:internship_plan_id])
+    end
+
+    def valid_create_final_report
+      unless Date.today >= @internship_plan.final_date
+        render json: { message: 'Você só poderá submeter o Relatório Final, somente após a data de término especificada no Plano de Estágio.' } 
+      end
     end
 end
