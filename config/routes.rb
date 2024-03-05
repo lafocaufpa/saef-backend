@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         resources :tasks
         resources :final_reports
       end
+
+      resources :attendances
     end
   end
 end

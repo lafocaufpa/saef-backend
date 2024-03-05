@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :internship_plan
+  has_many :attendances
   
   enum status: { 'Pendente': 0, 'Em andamento': 1, 'Concluida': 2 }
 

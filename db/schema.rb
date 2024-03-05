@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_06_194144) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_01_175813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "day", null: false
+    t.uuid "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_attendances_on_task_id"
+  end
 
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -180,6 +188,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_06_194144) do
     t.index ["unlock_token"], name: "index_trainees_on_unlock_token", unique: true
   end
 
+  add_foreign_key "attendances", "tasks"
   add_foreign_key "companies", "internship_supervisors"
   add_foreign_key "final_reports", "internship_plans"
   add_foreign_key "internship_plans", "internship_supervisors"
