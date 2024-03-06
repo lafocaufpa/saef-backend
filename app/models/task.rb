@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :internship_plan
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   
   enum status: { 'Pendente': 0, 'Em andamento': 1, 'Concluida': 2 }
 

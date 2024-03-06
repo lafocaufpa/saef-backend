@@ -7,7 +7,7 @@ class InternshipPlan < ApplicationRecord
   validates :title, presence: true
   validates :general_objective, presence: true
   validates :specific_objective, presence: true 
-  validates :start_date, presence: true, start_date: { message: 'A Data Inicial não é válida' }
+  validates :start_date, presence: true, start_date: { message: 'A Data Inicial não é válida' }, on: :create
   validates :final_date, presence: true, final_date: { message: 'A Data Final não pode ser menor ou igual a Data Inicial' }
   validates :expected_result, presence: true
   validates :workload, presence: true 
