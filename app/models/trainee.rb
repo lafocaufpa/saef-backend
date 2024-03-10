@@ -2,6 +2,9 @@
 class Trainee < ActiveRecord::Base
   belongs_to :internship_coordinator
   has_one :internship_plan
+  has_many :tasks, through: :internship_plan
+  has_many :attendances, through: :tasks
+
   
   validates :name, presence: true 
   validates :cpf, presence: true, length: { is: 11 }#, cpf: { message: 'não é válido' }
@@ -12,12 +15,17 @@ class Trainee < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #:timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :lockable, :validatable
+  :recoverable, :rememberable, :trackable, :lockable, :validatable
   include DeviseTokenAuth::Concerns::User
-
-
+  
+  
   before_validation :set_uid 
   after_create :notify_new_user_mail
+  
+  
+  def total_hours_registered
+    attendances.count * 4
+  end
 
   private 
     def set_uid 

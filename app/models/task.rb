@@ -4,9 +4,7 @@ class Task < ApplicationRecord
   
   enum status: { 'Pendente': 0, 'Em andamento': 1, 'Concluida': 2 }
 
-  validates :start_date, presence: true, start_date: { message: 'A Data Inicial não é válida' }
+  validates :start_date, presence: true, start_date: { message: 'A Data Inicial não é válida' }, on: :create
   validates :final_date, presence: true, final_date: { message: 'A Data Final não pode ser menor ou igual a Data Inicial' } 
-  validates :description, presence: true
-  validates :description, presence:  true#, length: { in: 0..2 } 
-
+  validates :description, presence: true 
 end

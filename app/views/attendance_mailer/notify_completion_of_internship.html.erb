@@ -1,0 +1,5 @@
+<h2>Olá <%=@internship_supervisor.name%>!</h2>
+<p>
+  Gostaria de informá-lhe, que a data definida para o término do Estágio! <br/>
+  E a carga horária efetivada pelo estagiário <%= @internship_supervisor.internship_plan.trainee.name%> foi de <%= @internship_supervisor.internship_plan.trainee.total_hours_registered%> horas.
+</p>

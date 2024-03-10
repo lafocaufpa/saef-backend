@@ -1,13 +1,7 @@
 class Api::V1::AttendancesController < ApplicationController
-  before_action :authenticate_api_trainee!, except:  [:index, :show]
+  before_action :authenticate_api_trainee!, except: [:show]
   before_action :restrict_access, only: %i[create]
   before_action :set_attendance, only: %i[show update destroy]
-
-  def index 
-    @attendances =  Attendance.order(:day)
-
-    render json: @attendances
-  end
 
   def show 
     render json: @attendance

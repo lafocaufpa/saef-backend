@@ -1,6 +1,7 @@
 class Api::V1::InternshipPlansController < ApplicationController
   before_action :authenticate_api_internship_supervisor!
   before_action :set_internship_plan, only: %i[show update destroy]
+  
   def index 
     @internship_plans = current_api_internship_supervisor.internship_plan
 
