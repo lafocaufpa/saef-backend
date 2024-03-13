@@ -24,6 +24,9 @@ Rails.application.routes.draw do
       resources :internship_plans do 
         resources :tasks
         resources :final_reports
+        member do
+          get 'generate_pdf'
+        end
       end
 
       resources :attendances

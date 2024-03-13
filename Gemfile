@@ -53,4 +53,5 @@ gem 'devise_token_auth', '>= 1.2.0', git: "https://github.com/lynndylanhurley/de
 
 gem "pundit", "~> 2.3"
 
-gem "whenever", require: false 
+gem "whenever", require: false
+
