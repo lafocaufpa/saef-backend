@@ -35,17 +35,18 @@ class Api::V1::InternshipPlansController < ApplicationController
     render json: @internship_plan.title 
   end
 
-  def generate_pdf 
-    @internship_plan_pdf = current_api_internship_supervisor.internship_plan
+  # Action to return the information to generate the plan pdf
+  def generate_pdf_plan
+    @internship_pdf_plan = current_api_internship_supervisor.internship_plan
     
     render json: {
-      title: @internship_plan_pdf.title,
-      general_objective: @internship_plan_pdf.general_objective,
-      specific_objective: @internship_plan_pdf.specific_objective,
-      start_date: @internship_plan_pdf.start_date,
-      final_date: @internship_plan_pdf.final_date,
-      expected_result: @internship_plan_pdf.expected_result,
-      workload: @internship_plan_pdf.workload
+      title: @internship_pdf_plan.title,
+      general_objective: @internship_pdf_plan.general_objective,
+      specific_objective: @internship_pdf_plan.specific_objective,
+      start_date: @internship_pdf_plan.start_date,
+      final_date: @internship_pdf_plan.final_date,
+      expected_result: @internship_pdf_plan.expected_result,
+      workload: @internship_pdf_plan.workload
     }
   end
 

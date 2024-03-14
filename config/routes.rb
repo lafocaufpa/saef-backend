@@ -23,9 +23,13 @@ Rails.application.routes.draw do
       
       resources :internship_plans do 
         resources :tasks
-        resources :final_reports
+        resources :final_reports do 
+          member do
+            get 'generate_pdf_final_report' # Route to generate final report pdf
+          end
+        end
         member do
-          get 'generate_pdf'
+          get 'generate_pdf_plan' # Route to generate plan pdf
         end
       end
 

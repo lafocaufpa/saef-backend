@@ -34,7 +34,20 @@ class Api::V1::FinalReportsController < ApplicationController
   def destroy
     @final_report.destroy
 
-    render json: { message: 'Tarefa excluída com sucesso!' }
+    render json: { message: 'Relatório Final excluído com sucesso!' }
+  end
+
+  # Action to return the information to generate the final report PDF
+  def generate_pdf_final_report 
+    @internship_pdf_final_report = @internship_plan.final_report
+    
+    render json: {
+      effective_workload: @internship_pdf_final_report.effective_workload,
+      note: @internship_pdf_final_report.note,
+      applied_technique: @internship_pdf_final_report.applied_technique,
+      general_assessment: @internship_pdf_final_report.general_assessment,
+      professional_experience: @internship_pdf_final_report.professional_experience,
+    }
   end
 
   private 
