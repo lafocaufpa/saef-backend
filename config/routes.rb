@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       namespace :internship_coordinators, only: [:index, :validate_user] do
         get 'index', to: 'internship_coordinators#index'
         put 'validate_user/:user_id', to: 'internship_coordinators#validate_user'
+        get 'follow_internship_plan', to: 'internship_coordinators#follow_internship_plan' # Route to folow the internship plan
+        get 'follow_final_report', to: 'internship_coordinators#follow_final_report' # Route to follow the final report
       end
       
       mount_devise_token_auth_for 'Trainee', at: 'trainee_auth', controllers: {
